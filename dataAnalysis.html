@@ -33,19 +33,23 @@ I also used the equivalent csv for club teams <a href="/soccer-spi/spi_global_ra
 </p>
 
 <h2>Step 4: Construct and publish presentations of the process and the results of analysis.</h2>
+
 <h3>how was the problem was determined?: </h3>
 <p>Lately I spend all my time thinking about the world cup, and I've been looking at the 538 predictions game by game.
   they always use the 'spi' stat in their tables and articles, but i was curious about the role it played and it's distribution.
   also my husband and i were wondering the question about whether club or national teams were better on average the other day. </p>
 
+
 <h3>how was the data was obtained?: </h3>
 <p> I obtained the data from 538's <a href="https://data.fivethirtyeight.com/">website</a>
 I downloaded it as a zip file containing 4 CSV files documenting club and national team stats and club and international match stats respectively.</p>  
+
 
 <h3>data preparation: </h3>
 <p> I checked if there were any empty cells in either of the datasets i was using with df.isna().sum()
   there weren't. the data was actually very clean. a benefit of getting it from 538 rather than kaggle.
 </p>  
+
 
 <h3>analysis for question 1: Is the average SPI higher on average for national teams or club teams?</h3>
 <p> I first used the .describe() method to get basic statistics on both datasets.
@@ -68,9 +72,31 @@ I downloaded it as a zip file containing 4 CSV files documenting club and nation
   I'm slightly suprised that the average is so similar though since club teams are so effected by unequal team wealth.
 </p> 
 
+
 <h3>analysis for question 2: Which conference has the highest average SPI and Ranking?</h3>
-<p> I used the .describe() method to get basic statistics on both datasets.
+<p> first I graphed the spi and rank by confed to see the distribution per confederation.
 </p> 
+<h4>spi confederation distribution</h4>
+<img src="images/SPIConfedLine.png" alt="club stats" width="200"/>
+<h4>rank confederation distribution</h4>
+<img src="images/RankConfedLine.png" alt="intl stats" width="200"/>
+<p> Then I took the avg by confederation.
+</p> 
+<h4>average SPI by confederation</h4>
+<img src="images/avgSPIConfed.png" alt="club stats" width="200"/>
+<h4>average rank by confederation</h4>
+<img src="images/rankConfedStats.png" alt="intl stats" width="200"/>
+<p> and displayed them with bar graphs.
+</p> 
+<h4>average SPI by confederation</h4>
+<img src="images/SPIConfedAvg.png" alt="club stats" width="200"/>
+<h4>average rank by confederation</h4>
+<img src="images/rankConfedAvg.png" alt="intl stats" width="200"/>
+<p> and the answer is that for both SPI and rank, CONMEBOL is the best, followed by UEFA.
+  But you can really see how many countries are in UEFA and how spread it is.
+  It would be interesting to compare this to data on avg viewership of conference cups.
+</p> 
+
 
 <h3>analysis for question 3: how correlated is SPI with ranking?</h3>
 <p> This is very easy to figure out using pandas with the .corr() method. 
