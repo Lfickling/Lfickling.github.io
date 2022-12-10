@@ -12,7 +12,8 @@
 <h2>Step 1: choose a data set</h2>
 <p>I've chosen: The 538 datasets on world football (soccer) SPI (soccer power index).
    Specifically the spi_global_rankings csv. 
-  you can find a link to that csv <a href="/soccer-spi/spi_global_rankings_intl.csv">here</a></p>
+  you can find a link to that csv <a href="/soccer-spi/spi_global_rankings_intl.csv">here</a>
+I also used the equivalent csv for club teams <a href="/soccer-spi/spi_global_rankings.csv">found here</a></p>
 
 <h2>Step 2: Formulate one or more questions to be investigated via data analysis.</h2>
 <ol>
@@ -24,24 +25,69 @@
 </ol>
 
 <h2>Step 3: Use computer-based tools to analyze the data in the context of addressing your questions/hypotheses.</h2>
-<p>I'm using python with pandas.
-  here's the <a href="/footballAnalysis.ipynb">link</a> to the ipython notebook
+<p>I'm using python with pandas with matplotlib and seaborn for visuals
+  here's the <a href="/footballAnalysis.ipynb">link</a> to the ipython notebook.
+  I did all my work in VScode and just did all my commits / uploads to the github repo / this website from there.
+  I used the package documentation as well as geeksforgeeks and stackexchange for refrence on how to properly format the graphs.
+  i documented my progress with markdown in the ipython notebook. 
 </p>
 
 <h2>Step 4: Construct and publish presentations of the process and the results of analysis.</h2>
-<p>published content must address both the process by which the problem was determined, data was obtained, and analysis conducted and the results of the analyses.
+<h3>how was the problem was determined?: </h3>
+<p>Lately I spend all my time thinking about the world cup, and I've been looking at the 538 predictions game by game.
+  they always use the 'spi' stat in their tables and articles, but i was curious about the role it played and it's distribution.
+  also my husband and i were wondering the question about whether club or national teams were better on average the other day. </p>
 
-In addition to describing the process, details must be provided about associated sources, data sets, questions/hypotheses, downloading, formatting, analytical tools, documentation tools, and uploading.
+<h3>how was the data was obtained?: </h3>
+<p> I obtained the data from 538's <a href="https://data.fivethirtyeight.com/">website</a>
+I downloaded it as a zip file containing 4 CSV files documenting club and national team stats and club and international match stats respectively.</p>  
 
-Presentations must include both textually and graphically formatted information.  (Note that different formats can be used for different analytical results.)</p>
+<h3>data preparation: </h3>
+<p> I checked if there were any empty cells in either of the datasets i was using with df.isna().sum()
+  there weren't. the data was actually very clean. a benefit of getting it from 538 rather than kaggle.
+</p>  
 
-<ol>
-  <li>answers</li>
-  <li>Tea</li>
-  <li>Milk</li>
-</ol>
+<h3>analysis for question 1: Is the average SPI higher on average for national teams or club teams?</h3>
+<p> I first used the .describe() method to get basic statistics on both datasets.
+</p> 
+<h4>club stats</h4>
+<img src="images/clubDescribe.png" alt="club stats" width="200"/>
+<h4>international stats</h4>
+<img src="images/intlDescribe.png" alt="intl stats" width="200"/>
+<p> the question can be answered just by looking at the general stats above: 
+  club mean is very slightly above intl mean 40.078 to 39.068 but the international teams have both a higher max and a lower min.
+  I produced some box plots of the respective spi distributions to give us a better understanding. 
+</p> 
+<h4>club spi box plot</h4>
+<img src="images/clubBox.png" alt="club stats" width="200"/>
+<h4>international spi box plot</h4>
+<img src="images/intlBox.png" alt="intl stats" width="200"/>
+<h4>international and club spi distribution compared</h4>
+<img src="images/SPIDistLine.png" alt="intl stats" width="200"/>
+<p> They show that the club teams are much more concentrated at average while international teams have a much larger spread. 
+  I'm slightly suprised that the average is so similar though since club teams are so effected by unequal team wealth.
+</p> 
 
-<img src="https://www.kasandbox.org/programming-images/animals/crocodiles.png" alt="Scary crocodiles" width="200"/>
+<h3>analysis for question 2: Which conference has the highest average SPI and Ranking?</h3>
+<p> I used the .describe() method to get basic statistics on both datasets.
+</p> 
+
+<h3>analysis for question 3: how correlated is SPI with ranking?</h3>
+<p> This is very easy to figure out using pandas with the .corr() method. 
+  I also graphed the rank and spi on two axes of a scatterplot to visualize. The dots are color coded by conference.
+</p> 
+<img src="images/correllation.png" alt="intl stats" width="200"/>
+
+<h4>spi and rank correlation</h4>
+<img src="images/SPIDistLine.png" alt="intl stats" width="200"/>
+
+<p> As you can see they are very very correlated. almost 100% negative correlation.
+  This makes me wonder if whoever calculates SPI (is it 538?) uses the ranking as a factor. I had thought that it was mostly about player stats and record.
+  Ah ... but the record is what determines the rank. this now seems obvious.
+  Still a bit suprising that its so so correlated though. Football has a higher than average rate of upsets because it's low scoring (which is why it's interesting unlike basketball)
+  so one would think that ranking wouldn't track spi so perfectly.
+</p> 
+
 
 </body>
 </html>
